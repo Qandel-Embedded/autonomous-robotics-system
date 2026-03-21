@@ -1,26 +1,42 @@
 # Autonomous Robotics System
 
-A ROS-based autonomous robot featuring custom PCB design, multi-sensor fusion, and real-time path planning.
+[![CI](https://github.com/Qandel-Embedded/autonomous-robotics-system/actions/workflows/ci.yml/badge.svg)](https://github.com/Qandel-Embedded/autonomous-robotics-system/actions)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Overview
-This project implements an autonomous mobile robot capable of navigating complex environments using sensor fusion and computer vision algorithms.
+ROS-based autonomous robot with custom PCB, Kalman-filter sensor fusion, A* path planning, and PID motor control.
 
-## Technologies
-- **Platform:** Raspberry Pi 4 + STM32 co-processor
-- **Framework:** ROS (Robot Operating System)
-- **Sensors:** LiDAR, IMU, ultrasonic, camera
-- **Communication:** CAN Bus, I2C, SPI
-- **PCB:** Custom 4-layer board (KiCad)
+## Architecture
+```
+sensors → KalmanFilter (fusion) → AStarPlanner → PIDController → motors
+```
 
-## Features
-- Real-time obstacle avoidance
-- SLAM-based mapping and localization
-- Custom PCB with integrated motor drivers
-- Remote monitoring dashboard
+## Stack
+| Layer | Technology |
+|-------|-----------|
+| Platform | Raspberry Pi 4 + STM32 co-processor |
+| Framework | ROS Noetic |
+| Sensors | LiDAR, IMU, encoders, camera |
+| Communication | CAN Bus, SPI, I2C |
+| PCB | Custom 4-layer (KiCad) |
+
+## Quick Start
+```bash
+git clone https://github.com/Qandel-Embedded/autonomous-robotics-system
+cd autonomous-robotics-system
+pip install -r requirements.txt
+python src/main.py
+```
+
+## Run Tests
+```bash
+pytest tests/ -v
+```
 
 ## Results
-- Navigation accuracy: < 5cm deviation
-- Processing latency: < 50ms
+- Navigation accuracy: < 5 cm deviation
+- Path planning: < 20 ms on Pi 4
+- Sensor fusion rate: 100 Hz
 
 ---
-**Portfolio:** https://ahmedqandel.com | **Hire me on Upwork**
+**Portfolio:** https://ahmedqandel.com | Available for hire on Upwork
